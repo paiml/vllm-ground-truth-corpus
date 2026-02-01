@@ -24,8 +24,8 @@ dev = [
     "pytest-cov>=5.0",
     "pytest-asyncio>=0.23",
     "hypothesis>=6.100",
-    "ruff>=0.4",
-    "mypy>=1.10",
+    "ruff>=0.9",
+    "ty>=0.0.1a7",
 ]
 
 [build-system]
@@ -47,7 +47,7 @@ src = ["src", "tests"]
 
 [tool.ruff.lint]
 select = ["E", "F", "W", "I", "N", "D", "UP", "ANN", "B", "C4", "SIM"]
-ignore = ["D100", "D104", "ANN401"]
+ignore = ["D100", "D104", "ANN401", "B027"]
 
 [tool.ruff.lint.pydocstyle]
 convention = "google"
@@ -55,14 +55,10 @@ convention = "google"
 [tool.ruff.lint.per-file-ignores]
 "tests/*" = ["D", "ANN", "N806"]
 
-[tool.mypy]
-strict = true
-python_version = "3.10"
-disable_error_code = ["no-any-return", "type-arg", "no-untyped-call", "import-untyped"]
-
 [tool.coverage.run]
 source = ["src/vllm_gtc"]
 branch = true
 
 [tool.coverage.report]
 exclude_lines = ["pragma: no cover", "if TYPE_CHECKING:"]
+fail_under = 95

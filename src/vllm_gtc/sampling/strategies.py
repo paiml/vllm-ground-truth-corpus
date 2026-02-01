@@ -86,7 +86,8 @@ def apply_temperature(logits: NDArray[np.float32], temperature: float) -> NDArra
         msg = "temperature must be > 0 (use greedy sampling for deterministic)"
         raise ValueError(msg)
 
-    return logits / temperature
+    result: NDArray[np.float32] = (logits / temperature).astype(np.float32)
+    return result
 
 
 def top_k_filter(logits: NDArray[np.float32], k: int) -> NDArray[np.float32]:

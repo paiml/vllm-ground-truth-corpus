@@ -80,7 +80,7 @@ class Request:
         """Check if request is complete."""
         if self.num_generated_tokens >= self.max_tokens:
             return True
-        return (
+        return bool(
             self.eos_token_id is not None
             and self._generated
             and self._generated[-1] == self.eos_token_id
